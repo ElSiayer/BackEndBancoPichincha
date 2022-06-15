@@ -101,17 +101,24 @@ namespace BackEndBancoPichincha.Servicios
             {
                 TipoMovimiento tipo = db.TiposMovimientos.Find(nuevo.TipoMovimientoId);
                 Cuenta cuenta = db.Cuentas.Find(nuevo.NumeroCuenta);
-
-
-                Movimiento ultimo = db.Movimientos.OrderByDescending(p => p.Id).Where(p=>p.NumeroCuenta == nuevo.NumeroCuenta).First();
-                if (ultimo == null)
+                Console.WriteLine(cuenta.ClienteId);
+                Console.WriteLine(tipo.Tipo);
+                saldo = cuenta.SaldoInicial;
+                try
                 {
-                    saldo = cuenta.SaldoInicial;
+                    Movimiento ultimo = db.Movimientos.OrderByDescending(p => p.Id).Where(p => p.NumeroCuenta == cuenta.NumeroCuenta).First();
+                    Console.WriteLine(ultimo);
+                    if (ultimo != null)
+                    {
+                        saldo = ultimo.Saldo;
+
+                    }
                 }
-                else
+                catch 
                 {
-                    saldo = ultimo.Saldo;
+
                 }
+                
                 
                 if (tipo.Tipo.Equals("Debito")) {                    
                     if (nuevo.Valor>saldo || saldo == 0) {
