@@ -8,15 +8,15 @@ El proyecto consta de cuatro tipos de entidades y estas son:
 
 Esta entidad consta con los siguientes atributos: nombre, genero,edad, identificación, dirección, teléfono y un id como PK.
 
-###Cliente
+### Cliente
 
 Esta entidad heredad de la entidad Persona y consta con los siguientes atributos clienteid, contraseña, estado, donde clienteid es su PK
 
-###Cuenta
+### Cuenta
 
 Esta entidad maneja los siguientes atributos número cuenta, tipo cuenta, saldo Inicial, estado, donde número cuenta es su PK
 
-###Movimientos
+### Movimientos
 
 Esta entidad consta con los siguientes atributos: Fecha, tipo movimiento, valor, saldo y un id como su PK
 
