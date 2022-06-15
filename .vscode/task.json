@@ -1,0 +1,13 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Node Image",
+            "type": "docker-build",
+            "netCore": {
+                "debuggerPath": "/remote_debugger/vsdbg",
+                "appProject": "${workspaceFolder}/BackEndBancoPichincha.csproj"
+            }
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+version: '3.4' 
+networks:
+  backendbancopichincha-dev:
+    driver: bridge 
+ 
+services:
+  backendbancopichincha1:
+    image: backendbancopichincha:latest
+    depends_on:
+      - "postgres_image"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      DB_CONNECTION_STRING: "host=postgres_image;port=5432;database=PruebaTecnicaBP;username=UserPruebaTecnica;password=PruebaTecnica123"
+
+
+    networks:
+      - backendbancopichincha-dev  
+
+  postgres_image:
+      image: postgres:latest
+      ports:
+        - "5432:5432"
+      restart: always
+      volumes:
+        - db_volume:/var/lib/postgresql/data        
+        - ./BaseDatos.sql:/docker-entrypoint-initdb.d/seed.sql
+      environment:
+        POSTGRES_USER: "UserPruebaTecnica"
+        POSTGRES_PASSWORD: "PruebaTecnica123"
+        POSTGRES_DB: "PruebaTecnicaBP"
+      networks:
+        - backendbancopichincha-dev
+volumes:
+  db_volume:

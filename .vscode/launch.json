@@ -1,0 +1,24 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Docker .NET Core Attach (Preview)",
+            "type": "docker",
+            "request": "attach",
+            "platform": "netCore",
+            "sourceFileMap": {
+                "/src": "${workspaceFolder}"
+            }
+        },
+        {
+            "name": "Launch .NET Core in Docker",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "Run Docker Container",
+            "netCore": {
+                "debuggerPath": "/remote_debugger/vsdbg",
+                "appProject": "${workspaceFolder}/BackEndBancoPichincha.csproj"
+            }
+        }
+    ]
+}
